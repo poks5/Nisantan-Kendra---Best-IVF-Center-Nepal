@@ -1,0 +1,8 @@
+{
+  "name": "Nisantan Kendra - Best IVF Center Nepal",
+  "description": "Trusted fertility center in Kathmandu (Est. 1992) helping 25,000+ couples. Offering IVF, IUI, ICSI, and Male Infertility treatments with Dr. Uma Shrivastava.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
