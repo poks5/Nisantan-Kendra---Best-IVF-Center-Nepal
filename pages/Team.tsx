@@ -21,6 +21,12 @@ export const Team: React.FC<PageProps> = ({ t, lang, doctors }) => {
     setExpandedDocs(prev => ({ ...prev, [id]: !prev[id] }));
   };
 
+  // Filter doctors for the main detailed section (Executive OR Featured)
+  const mainDoctors = doctors.filter(d => d.isExecutive || d.isFeatured);
+  
+  // Filter doctors for the grid section (Neither Executive NOR Featured)
+  const otherDoctors = doctors.filter(d => !d.isExecutive && !d.isFeatured);
+
   return (
     <div className="flex flex-col bg-slate-50 min-h-screen">
       
@@ -43,8 +49,8 @@ export const Team: React.FC<PageProps> = ({ t, lang, doctors }) => {
         </div>
       </section>
 
-      {/* Executive Director Spotlight - Redesigned */}
-      {doctors.filter(d => d.isExecutive).map((doc) => {
+      {/* Detailed Profiles (Executive & Featured) */}
+      {mainDoctors.map((doc) => {
         const isExpanded = expandedDocs[doc.id];
         
         return (
@@ -87,7 +93,7 @@ export const Team: React.FC<PageProps> = ({ t, lang, doctors }) => {
                           <div className="bg-blue-50 p-2 rounded-lg text-blue-600 mt-1"><Languages size={18} /></div>
                           <div>
                              <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wide mb-1">Languages Spoken</h4>
-                             <p className="text-slate-800 font-medium text-sm">{doc.languages?.join(', ')}</p>
+                             <p className="text-slate-800 font-medium text-sm">{doc.languages?.join(', ') || 'Nepali, English'}</p>
                           </div>
                        </div>
                     </div>
@@ -142,7 +148,7 @@ export const Team: React.FC<PageProps> = ({ t, lang, doctors }) => {
                   <div className={`border-t border-slate-100 bg-slate-50/50 p-8 md:p-12 transition-all duration-700 ${isExpanded ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'}`}>
                      
                      {/* Awards Section - Full Width */}
-                     {doc.awards && (
+                     {doc.awards && doc.awards.length > 0 && (
                         <div className="bg-gradient-to-r from-amber-50 to-yellow-50 border border-amber-200 rounded-2xl p-6 mb-12 shadow-sm">
                           <h3 className="text-xl font-bold text-amber-900 mb-6 flex items-center gap-2">
                             <Medal className="text-amber-600 fill-amber-100" size={24} /> Awards & Recognition
@@ -164,7 +170,7 @@ export const Team: React.FC<PageProps> = ({ t, lang, doctors }) => {
                         {/* Left Column: Milestones & Achievements */}
                         <div className="space-y-10">
                            {/* Milestones */}
-                           {doc.milestones && (
+                           {doc.milestones && doc.milestones.length > 0 && (
                              <div>
                                <h3 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
                                  <Clock className="text-brand-500" /> Career Milestones
@@ -181,11 +187,11 @@ export const Team: React.FC<PageProps> = ({ t, lang, doctors }) => {
                              </div>
                            )}
                            
-                           {/* Achievements */}
-                           {doc.achievements && (
+                           {/* Achievements/Expertise */}
+                           {doc.achievements && doc.achievements.length > 0 && (
                              <div>
                                <h3 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
-                                  <Activity className="text-brand-500" /> Professional Contributions
+                                  <Activity className="text-brand-500" /> Key Expertise
                                </h3>
                                <ul className="space-y-3">
                                  {doc.achievements.map((ach, i) => (
@@ -199,10 +205,10 @@ export const Team: React.FC<PageProps> = ({ t, lang, doctors }) => {
                            )}
                         </div>
 
-                        {/* Right Column: Publications & Books */}
+                        {/* Right Column: Publications, Books, Training */}
                         <div className="space-y-10">
                            {/* Books */}
-                           {doc.books && (
+                           {doc.books && doc.books.length > 0 && (
                               <div>
                                  <h3 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
                                     <BookOpen className="text-blue-500" /> Books & Monographs
@@ -219,7 +225,7 @@ export const Team: React.FC<PageProps> = ({ t, lang, doctors }) => {
                            )}
 
                            {/* Publications */}
-                           {doc.publications && (
+                           {doc.publications && doc.publications.length > 0 && (
                               <div>
                                  <h3 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
                                     <FileText className="text-slate-500" /> Selected Publications
@@ -236,7 +242,7 @@ export const Team: React.FC<PageProps> = ({ t, lang, doctors }) => {
                            )}
                            
                            {/* Advanced Training */}
-                           {doc.advancedTraining && (
+                           {doc.advancedTraining && doc.advancedTraining.length > 0 && (
                               <div className="bg-slate-900 text-white p-6 rounded-2xl relative overflow-hidden shadow-lg">
                                  <div className="relative z-10">
                                     <h3 className="text-lg font-bold mb-4 border-b border-slate-700 pb-2 flex items-center gap-2">
@@ -262,11 +268,12 @@ export const Team: React.FC<PageProps> = ({ t, lang, doctors }) => {
         </section>
       )})}
 
-      {/* Other Specialists */}
+      {/* Other Specialists Grid */}
+      {otherDoctors.length > 0 && (
       <section className="py-20 container mx-auto px-4">
          <h2 className="text-3xl font-bold text-slate-900 mb-12 text-center">{lang === 'en' ? 'Senior Consultants' : 'वरिष्ठ विशेषज्ञहरू'}</h2>
          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {doctors.filter(d => !d.isExecutive).map((doc) => (
+            {otherDoctors.map((doc) => (
                <div key={doc.id} className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 border border-slate-100 overflow-hidden group flex flex-col">
                   <div className="h-64 overflow-hidden relative">
                      <img src={doc.image} alt={doc.name} className="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-500" />
@@ -299,6 +306,7 @@ export const Team: React.FC<PageProps> = ({ t, lang, doctors }) => {
             ))}
          </div>
       </section>
+      )}
 
       {/* Allied Health (Nutritionist) */}
       <section className="py-16 bg-brand-50/50 mt-12">

@@ -769,7 +769,15 @@ export const DOCTORS: Record<'en' | 'ne', Doctor[]> = {
       experience: "10+ Years",
       specialization: "Embryology, IVF Laboratory Management, Reproductive Medicine",
       availability: "Monday - Saturday",
-      image: "https://picsum.photos/500/500?random=3"
+      image: "https://picsum.photos/500/500?random=3",
+      isFeatured: true,
+      professionalSummary: "Dr. Sangita Chakrabartty is a distinguished Consultant Gynecologist and Embryologist with over a decade of experience in reproductive medicine. As a key member of our IVF unit, she specializes in the critical laboratory aspects of assisted reproductive technology (ART), ensuring the highest standards of embryo culture and development. Her dual expertise in gynecology and embryology allows her to bridge the gap between clinical care and laboratory science, optimizing outcomes for patients undergoing IVF procedures. Dr. Chakrabartty is dedicated to meticulous laboratory management and patient-focused fertility treatments.",
+      achievements: [
+        "Expert in Clinical Embryology and Gamete Handling",
+        "IVF Laboratory Quality Control & Management",
+        "Specialized in Intracytoplasmic Sperm Injection (ICSI)",
+        "Comprehensive Reproductive Health Assessments"
+      ]
     }
   ],
   ne: [
@@ -853,7 +861,15 @@ export const DOCTORS: Record<'en' | 'ne', Doctor[]> = {
       experience: "१०+ वर्ष",
       specialization: "भ्रूण विज्ञान, IVF प्रयोगशाला व्यवस्थापन, प्रजनन चिकित्सा",
       availability: "सोमबार - शनिबार",
-      image: "https://picsum.photos/500/500?random=3"
+      image: "https://picsum.photos/500/500?random=3",
+      isFeatured: true,
+      professionalSummary: "डा. संगीता चक्रवर्ती प्रजनन चिकित्सामा एक दशकभन्दा बढी अनुभव भएकी प्रतिष्ठित कन्सल्टेन्ट स्त्री रोग विशेषज्ञ र भ्रूण विज्ञ हुनुहुन्छ। हाम्रो IVF एकाईको मुख्य सदस्यको रूपमा, उहाँ सहायक प्रजनन प्रविधि (ART) को प्रयोगशाला पक्षमा विशेषज्ञ हुनुहुन्छ, जसले भ्रूण विकासको उच्च मापदण्ड सुनिश्चित गर्दछ। उहाँको स्त्री रोग र भ्रूण विज्ञानमा दोहोरो विशेषज्ञताले उहाँलाई बिरामीको हेरचाह र प्रयोगशाला विज्ञान बीचको खाडल कम गर्न मद्दत गर्दछ।",
+      achievements: [
+        "क्लिनिकल भ्रूण विज्ञान र ग्यामेट ह्यान्डलिंगमा विशेषज्ञ",
+        "IVF प्रयोगशाला गुणस्तर नियन्त्रण र व्यवस्थापन",
+        "ICSI प्रक्रियामा विशेष दख्खल",
+        "विस्तृत प्रजनन स्वास्थ्य मूल्याङ्कन"
+      ]
     }
   ]
 };
